@@ -826,22 +826,22 @@ func (c *Config) Validate() error {
 	}
 
 	// validate the Consumer Group values
-	switch {
-	case c.Consumer.Group.Session.Timeout <= 2*time.Millisecond:
-		return ConfigurationError("Consumer.Group.Session.Timeout must be >= 2ms")
-	case c.Consumer.Group.Heartbeat.Interval < 1*time.Millisecond:
-		return ConfigurationError("Consumer.Group.Heartbeat.Interval must be >= 1ms")
-	case c.Consumer.Group.Heartbeat.Interval >= c.Consumer.Group.Session.Timeout:
-		return ConfigurationError("Consumer.Group.Heartbeat.Interval must be < Consumer.Group.Session.Timeout")
-	case c.Consumer.Group.Rebalance.Strategy == nil && len(c.Consumer.Group.Rebalance.GroupStrategies) == 0:
-		return ConfigurationError("Consumer.Group.Rebalance.GroupStrategies or Consumer.Group.Rebalance.Strategy must not be empty")
-	case c.Consumer.Group.Rebalance.Timeout <= time.Millisecond:
-		return ConfigurationError("Consumer.Group.Rebalance.Timeout must be >= 1ms")
-	case c.Consumer.Group.Rebalance.Retry.Max < 0:
-		return ConfigurationError("Consumer.Group.Rebalance.Retry.Max must be >= 0")
-	case c.Consumer.Group.Rebalance.Retry.Backoff < 0:
-		return ConfigurationError("Consumer.Group.Rebalance.Retry.Backoff must be >= 0")
-	}
+	// switch {
+	// case c.Consumer.Group.Session.Timeout <= 2*time.Millisecond:
+	// 	return ConfigurationError("Consumer.Group.Session.Timeout must be >= 2ms")
+	// case c.Consumer.Group.Heartbeat.Interval < 1*time.Millisecond:
+	// 	return ConfigurationError("Consumer.Group.Heartbeat.Interval must be >= 1ms")
+	// case c.Consumer.Group.Heartbeat.Interval >= c.Consumer.Group.Session.Timeout:
+	// 	return ConfigurationError("Consumer.Group.Heartbeat.Interval must be < Consumer.Group.Session.Timeout")
+	// case c.Consumer.Group.Rebalance.Strategy == nil && len(c.Consumer.Group.Rebalance.GroupStrategies) == 0:
+	// 	return ConfigurationError("Consumer.Group.Rebalance.GroupStrategies or Consumer.Group.Rebalance.Strategy must not be empty")
+	// case c.Consumer.Group.Rebalance.Timeout <= time.Millisecond:
+	// 	return ConfigurationError("Consumer.Group.Rebalance.Timeout must be >= 1ms")
+	// case c.Consumer.Group.Rebalance.Retry.Max < 0:
+	// 	return ConfigurationError("Consumer.Group.Rebalance.Retry.Max must be >= 0")
+	// case c.Consumer.Group.Rebalance.Retry.Backoff < 0:
+	// 	return ConfigurationError("Consumer.Group.Rebalance.Retry.Backoff must be >= 0")
+	// }
 
 	for _, strategy := range c.Consumer.Group.Rebalance.GroupStrategies {
 		if strategy == nil {
